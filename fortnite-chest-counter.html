@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fortnite Chest Counter</title>
+<style>
+body {
+  background: #10152b;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+  padding-top: 40px;
+}
+h1 { color: #ffd700; }
+.counter {
+  font-size: 100px;
+  font-weight: bold;
+  margin: 25px;
+}
+button {
+  padding: 15px 25px;
+  margin: 8px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.add { background: #20c76a; color: white; }
+.remove { background: #e44b4b; color: white; }
+.reset { background: #555; color: white; }
+</style>
+</head>
+<body>
+
+<h1>FORTNITE CHEST COUNTER</h1>
+<div class="counter" id="count">0</div>
+
+<button class="add" onclick="change(1)">+1 CHEST</button>
+<button class="remove" onclick="change(-1)">-1 CHEST</button>
+<br>
+<button class="reset" onclick="reset()">RESET</button>
+
+<script>
+let count = Number(localStorage.getItem("chests")) || 0;
+
+function update() {
+  document.getElementById("count").innerText = count;
+  localStorage.setItem("chests", count);
+}
+
+function change(amount) {
+  count = Math.max(0, count + amount);
+  update();
+}
+
+function reset() {
+  count = 0;
+  update();
+}
+
+update();
+</script>
+
+</body>
+</html>
+
